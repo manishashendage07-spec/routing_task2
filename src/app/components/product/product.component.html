@@ -1,0 +1,21 @@
+
+  <mat-card class="product-card">
+      <img mat-card-image [src]="productObj.pimg" [alt]="productObj.pname" />
+      <mat-card-content>
+        <p>
+          The Product is <strong>{{ productObj.pname }}</strong> And It's Status
+          is <strong>{{ productObj.pstatus }}</strong>
+        </p>
+      </mat-card-content>
+
+      <mat-card-actions class="d-flex justify-content-between">
+        <button mat-raised-button color="primary" [routerLink]="['/product', productObj.pid, 'edit']">
+          Edit
+        </button>
+
+        <button mat-raised-button color="warn" (click)="onRemove()">
+          Remove
+        </button>
+      </mat-card-actions>
+
+    </mat-card>

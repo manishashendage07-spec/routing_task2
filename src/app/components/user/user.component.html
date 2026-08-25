@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-md-12 text-right">
+        <button routerLink="addusers" mat-raised-button color="primary" class="mb-2">Add Users</button>
+    </div>
+
+    <div class="col-md-4">
+        <ul class="list-group">
+            <li *ngFor="let user of usersArr" class="list-group-item">
+                <a [href]="user.userId" class="d-flex justify-content-between align-items-center">
+                    <span>{{ user.userName }} ({{ user.userId }})</span>
+                    <small class="badge" [class.badge-primary]="user.isActive" [class.badge-danger]="!user.isActive">
+                         {{ user.isActive ? 'Active' : 'Inactive' }}
+                    </small>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-8">
+        <router-outlet></router-outlet>
+    </div>
+</div>

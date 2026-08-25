@@ -1,0 +1,100 @@
+
+<main class="main-auth">
+
+  <div class="card auth-card" *ngIf="!allreadyhasaccount">
+    <div class="card-body">
+      <h2 class="text-center mb-4">Sign Up</h2>
+      <form [formGroup]="signforms" (ngSubmit)="onSignup()">
+  <div class="mb-3">
+    <input
+      type="email"  
+      class="form-control"
+      placeholder="Email"
+      formControlName="email"
+      autocomplete="email">
+  </div>
+
+  <div class="mb-3">
+    <input
+      type="password"
+      class="form-control"
+      placeholder="Password"
+      formControlName="password"
+      autocomplete="new-password">
+  </div>
+
+  <div class="mb-3">
+    <select class="form-control" formControlName="userRole">
+      <option value="">Select Role</option>
+      <option value="admin">Admin</option>
+      <option value="buyer">Buyer</option>
+      <option value="superadmin">Super Admin</option>
+    </select>
+  </div>
+
+  <button mat-raised-button color="primary" class="w-100" type="submit">
+    Sign Up
+  </button>
+
+</form>
+
+      <p class="text-center mt-3">
+        Already have an account?
+        <a href="javascript:void(0)"
+           (click)="allreadyhasaccount=true">
+          Log In
+        </a>
+      </p>
+
+    </div>
+  </div>
+
+<div class="card auth-card" *ngIf="allreadyhasaccount">
+    <div class="card-body">
+      <h2 class="text-center mb-4">Log In</h2>
+
+    <form [formGroup]="loginforms" (ngSubmit)="onLogin()">
+
+  <div class="mb-3">
+    <input
+      type="email"
+      class="form-control"
+      placeholder="Email"
+      formControlName="email"
+      autocomplete="email">
+  </div>
+
+   <div class="mb-3 password-field">
+
+    <input
+      [type]="hidePassword ? 'password' : 'text'"
+      class="form-control"
+      placeholder="Password"
+      formControlName="password"
+      autocomplete="current-password">
+    <button
+    type="button"
+    class="eye-btn"
+    (click)="togglePassword()">
+
+    <mat-icon>
+      {{ hidePassword ? 'visibility_off' : 'visibility' }}
+    </mat-icon>
+  </button>
+  </div>
+
+  <button mat-raised-button color="primary" class="w-100" type="submit">
+    Log In
+  </button>
+
+</form>
+
+      <p class="text-center mt-3">
+        Don't have an account?
+        <a href="javascript:;" (click)="allreadyhasaccount = false">
+          Sign Up
+        </a>
+      </p>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-md-12 text-right">
+        <button 
+        class="mb-2"
+
+        routerLink="addProduct" mat-raised-button color="primary">
+            Add Product
+        </button>
+    </div>
+    <div class="col-md-6">
+        <ul class="list-group">
+            <li 
+            routerLinkActive="active"
+            [routerLink]="['/product', product.pid]"
+                class="list-group-item d-flex justify-content-between align-items-center"
+                *ngFor="let product of products">
+                {{ product.pname }}
+                <small class="badge" [ngClass]="{
+      'badge-primary': product.pstatus === 'In-Progress',
+      'badge-success': product.pstatus === 'Dispatched',
+      'badge-warning': product.pstatus === 'Delivered'
+    }">
+                    {{ product.pstatus }}
+                </small>
+
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <router-outlet></router-outlet>
+    </div>
+</div>

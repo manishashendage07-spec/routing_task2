@@ -1,0 +1,40 @@
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h2>{{isInEditMode? 'Update Product':'Add Product'}}</h2>
+                <form (ngSubmit)="onProductSubmit()">
+                    <div class="form-group">
+                        <label for="pname">P Name*</label>
+                        <input formControlName="pname" type="text" id="pname" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="pstatus">P Status*</label>
+                        <select formControlName="pstatus" type="text" id="pstatus" class="form-control">
+                            <option value="In-Progress">In-Progress</option>
+                            <option value="Dispatched">Dispatched</option>
+                            <option value="Delivered">Delivered</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pimg">Product Image*</label>
+                        <input formControlName="pimg" type="text" id="pimg" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="canReturn">canReturn*</label>
+                        <select formControlName="canReturn" type="text" id="canReturn" class="form-control">
+                            <option value="0">Yes</option>
+                            <option value="1">No</option>
+                        </select>
+                    </div>
+                    <button *ngIf="!isInEditMode" type="submit" mat-raised-button color="primary">Add Product</button>
+                    <button *ngIf="isInEditMode" mat-raised-button color="primary" (click)="isInEditMode ? onupdate() : onProductSubmit()">
+                        Update Product
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

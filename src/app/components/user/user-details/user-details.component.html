@@ -1,0 +1,74 @@
+
+<ng-container  *ngIf="userDetails; else noUser">
+    <div class="row">
+    <div class="col-md-5">
+        <mat-card class="shadow-lg">
+            <img [src]="userDetails.profileImage" [alt]="userDetails.userName" [title]="userDetails.userName"
+                class="user-img text-center">
+            <h4 class="font-weight-bold">
+                {{userDetails.userName}}
+            </h4>
+            <strong>{{userDetails.userRole}}</strong>
+            <p>
+                {{userDetails.profileDescription}}
+            </p>
+            <mat-card-actions class="d-flex justify-content-between">
+                <button
+                [routerLink]="['/users',userDetails.userId,'edit']"
+                 class="btn-one" color="primary">Edit</button>
+                <button 
+                (click)="onRemoveUser()"
+                class="btn-two" color="warn">Remove</button>
+            </mat-card-actions>
+        </mat-card>
+
+    </div>
+    <div class="col-md-7">
+        <mat-card class="mb-4">
+            <h5 class="font-weight-bold text-center">Basic Information</h5>
+            <p class="m-0 text-center"><strong>User ID</strong> || {{userDetails.userId}}</p>
+            <p class="m-0 text-center"><strong>Experience</strong>|| {{userDetails.experienceYears}}</p>
+            <p class="m-o text-center">
+                <strong>Status</strong> <small class="badge" [ngClass]="{
+    'badge-success': userDetails.isActive,
+    'badge-danger': !userDetails.isActive}">
+                    {{ userDetails.isActive ? 'Active' : 'Inactive' }}
+                </small>
+            </p>
+        </mat-card>
+        <mat-card class="mb-4">
+            <h5 class="font-weight-bold text-center">Skills</h5>
+            <mat-chip-list class="text-center">
+                <mat-chip class="skill-chip" *ngFor="let skill of userDetails.skills">
+                      {{skill}}
+                </mat-chip>
+            </mat-chip-list>
+        
+    </mat-card>
+    <mat-card class="md-4">
+        <div class="row">
+            <div class="col-md-6">
+            <h5 class="font-weight-bold text-center">Current Address</h5>
+            <p class="mb-2 text-center">{{userDetails.address.current.country}}</p>
+            <p class="mb-2 text-center">{{userDetails.address.current.state}}</p>
+            <p class="mb-2 text-center">{{userDetails.address.current.city}}</p>
+            <p class="mb-2 text-center">{{userDetails.address.current.zipcode}}</p>
+            </div>
+            <div class="col-md-6">
+            <h5 class="font-weight-bold text-center">Permanent Address</h5>
+             <p class="mb-2 text-center">{{userDetails.address.permanent.country}}</p>
+            <p class="mb-2 text-center">{{userDetails.address.permanent.state}}</p>
+            <p class="mb-2 text-center">{{userDetails.address.permanent.city}}</p>
+            <p class="mb-2 text-center">{{userDetails.address.permanent.zipcode}}</p>
+            </div>
+
+        </div>
+    </mat-card>
+    </div>
+    
+</div>
+</ng-container>
+
+<ng-template #noUser>
+ <p class="alert alert-info">No User data Is Available</p>
+</ng-template>
