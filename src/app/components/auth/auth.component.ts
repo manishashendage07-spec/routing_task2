@@ -12,7 +12,7 @@ import { SpinnerService } from 'src/app/service/spinner.service';
 })
 export class AuthComponent implements OnInit {
   signforms!: FormGroup
- hidePassword: boolean = true;
+  hidePassword: boolean = true;
   allreadyhasaccount: boolean = false
   loginforms!: FormGroup
   constructor(
